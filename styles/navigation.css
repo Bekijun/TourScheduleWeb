@@ -1,0 +1,80 @@
+.container {
+    padding: 20px;
+    height: 100%;
+}
+
+aside {    
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.08),
+        0 3px 3px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    height: auto;
+    margin: 20px;
+    margin-left: 50px;
+    width: 250px;
+    transform: translateY(-3px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+aside:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 4px 4px rgba(0, 0, 0, 0.08);
+}
+
+aside img {
+    width: 50%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    margin-bottom: 10%;
+}
+aside .info {
+    margin-bottom: 20%;
+}
+aside .info .nickname {
+    font-size: 23px;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 5px;
+}
+aside .info .description {
+    font-size: 17px;
+    color: #555;
+}
+
+aside .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* 메뉴 항목 간 간격 */
+}
+
+aside .menu a {
+    display: block;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #555;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+aside .menu a:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* 마지막 메뉴 항목의 아래 테두리 제거 */
+aside .menu a:last-child {
+    border-bottom: none;
+}

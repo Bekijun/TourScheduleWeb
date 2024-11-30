@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+body {
+    background-color: #fff;
+    user-select: none;
+    display: flex;
+    flex-direction: column;  /* 기본값은 row, 이를 수직으로 설정하려면 column을 사용 */
+    min-height: 100vh;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;  /* 가상 요소의 기준점 */
+    min-height: calc(100vh - 120px);
+    padding: 20px;
+}
+
+/* 배경 이미지를 위한 가상 요소 */
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../res/airplane.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.3;  /* 배경 이미지 투명도 설정 (0.0 ~ 1.0) */
+    z-index: -1;  /* 컨텐츠 뒤로 보내기 */
+}
+
+.wrapper {
+    width: 100%;
+    background: #ffffff;  /* 완전 불투명한 흰색 */
+    position: relative;  /* 배경 이미지 위에 표시 */
+    z-index: 1;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 30px;
+    margin-right: 70px;
+    /* 그림자 효과 약화 */
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.08),
+        0 3px 3px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);  /* 살짝만 띄움 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 호버 시 효과도 약화 */
+.wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 4px 4px rgba(0, 0, 0, 0.08);
+}
+
+.wrapper .navContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.wrapper .navContainer .year,
+.wrapper .navContainer .month {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.wrapper .navContainer .current-date {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.wrapper .navContainer button {
+    width: 40px;
+    height: 38px;
+    font-size: 50px;
+    color: #878787;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.wrapper .navContainer button:hover {
+    background-color: #f0f0f0;
+    color: #008aff;
+    transform: translateY(-2px);
+}
+
+.calendar ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.calendar .weeks li {
+    font-weight: 500;
+}
+
+.calendar .days {
+    margin-bottom: 20px;
+}
+
+.calendar ul li {
+    width: calc(100% / 7);
+    position: relative;
+}
+
+.calendar .days li {
+    z-index: 1;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.days li.inactive {
+    color: #aaa;
+}
+
+.days li.active {
+    color: #666;
+}
+
+.calendar .days li::before {
+    position: absolute;
+    content: '';
+    height: 30px;
+    width: 30px;
+    top: 28%;  /* 기존 50%에서 45%로 변경하여 위로 살짝 이동 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.days li.active::before,
+.days li.selected::before {
+    background: #008aff;
+}
+
+.days li.active,
+.days li.selected {
+    color: white;
+}
+
+.days li.today {
+    color: #0004ff;
+}
+
+.selected-range {
+    background-color: #008aff;
+    color: white;
+    padding: 10px 10px;
+    border: 1px solid #008aff;
+}
+
+
+
+.inactive {
+    color: #ccc;
+}
+
+.day-description-container {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.date-description {
+    position: relative;
+    z-index: 1; 
+    font-size: 12px;
+    color: rgb(69, 69, 69); 
+}
+
+.day-description:focus {
+    border-color: #008aff;
+}
+
+
+/* floating button 스타일 */
+.floating-button {
+    position: fixed; /* 화면에 고정 */
+    bottom: 100px; /* footer와 겹치지 않도록 아래에서 100px로 설정 */
+    right: 40px; /* 오른쪽에서 40px */
+    width: 80px; /* 버튼의 너비 */
+    height: 80px; /* 버튼의 높이 */
+    background-color: #008aff; /* 버튼의 배경색 */
+    border-radius: 50%; /* 동그란 모양 */
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    color: white; /* 기본 글자색 */
+    font-size: 24px; /* 글자 크기 */
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    transition: background-color 0.3s, color 0.3s; /* 배경색과 글자색 변화에 부드러운 전환 효과 */
+    z-index: 1000; /* 다른 요소들보다 위에 표시 */
+}
+
+.floating-button a {
+    color: inherit; /* 부모의 글자색 상속 */
+    font-size: inherit; /* 부모의 글자 크기 상속 */
+}
+
+.floating-button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+    color: #ffffff; /* 호버 시 글자색 변경 */
+}
+
+/* 하이라이트된 날짜 스타일 */
+.highlighted {
+    background-color: #ffcc00;  /* 원하는 색으로 설정 */
+    color: white;  /* 텍스트 색 */
+    border-radius: 10px;  /* 동그란 모양 */
+    width: 30px;  /* 크기 설정 */
+    height: 20px;  /* 크기 설정 */
+}
+
+aside {
+    background: #ffffff;  /* 완전 불투명한 흰색 */
+    position: relative;  /* 배경 이미지 위에 표시 */
+    z-index: 1;
+    /* 나머지 스타일은 유지 */
+}
